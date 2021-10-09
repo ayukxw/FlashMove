@@ -2,6 +2,8 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,6 +44,16 @@ public class RegisterServlet extends HttpServlet {
 		String phone = request.getParameter("phone");
 		boolean result = false ;
 		
+		if (!isEmail(email)) {
+			response.getWriter().write("<script language=javascript>alert('Fail to validate Email');window.location='register.jsp'</script>");
+			return;
+		}
+		
+		if (!isNumeric(phone)) {
+			response.getWriter().write("<script language=javascript>alert('Fail to validate phone');window.location='register.jsp'</script>");
+			return;
+		}
+		
 		try {
 			AccountDBAO account = new AccountDBAO();
 			result = account.create(userName, password, nickName, phone, email);
@@ -61,6 +73,24 @@ public class RegisterServlet extends HttpServlet {
 		}
 		
 	}
+	
+	private boolean isEmail(String email) {
+		String reg = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
+		Pattern regex = Pattern.compile(reg);
+		Matcher matcher = regex.matcher(email);
+		boolean isMatched = matcher.matches();
+		return isMatched;
+	}
+	
+	public boolean isNumeric(String str) {
+		Pattern pattern = Pattern.compile("[0-9]+");
+		Matcher isNum = pattern.matcher(str);
+		if(!isNum.matches()) {
+			return false;
+		}
+		return true;
+	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

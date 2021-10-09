@@ -44,11 +44,11 @@
 		<form action="RegisterServlet" method="GET" style="text-align:center">
 			<div style="height:10%">
 				<%-- <span style="text-align:right;width:5%;margin-left:20%">User ID  : </span> --%>
-				<input type="text" name="userName" size="20" class="input" placeholder="PICK UP LOCATION">
+				<input type="text" name="pickLocation" size="20" class="input" placeholder="PICK UP LOCATION">
 			</div>
 			<div style="height:10%">
 				<%-- <span style="text-align:right;width:5%;margin-left:17%">Password : </span> --%>
-				<input type="password" name="password" size="20" class="input" placeholder="DROP OFF LOCATION">
+				<input type="text" name="dropLocation" size="20" class="input" placeholder="DROP OFF LOCATION">
 			</div>
 			<div><input type="submit" value="Confirm" class="submit"></div>
 		</form>
