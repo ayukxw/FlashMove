@@ -28,14 +28,21 @@
 
 package filters;
 
-import java.io.*;
-import java.sql.Timestamp;
-import java.util.Iterator;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import database.BookDetails;
-import cart.*;
-import util.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import util.Counter;
 
 
 public final class OrderFilter implements Filter {
@@ -64,40 +71,8 @@ public final class OrderFilter implements Filter {
         Counter counter = (Counter) context.getAttribute("orderCounter");
         HttpServletRequest hsr = (HttpServletRequest) request;
         HttpSession session = hsr.getSession();
-        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-        Currency c = (Currency) session.getAttribute("currency");
-        c.setAmount(cart.getTotal());
-        writer.println();
-        writer.println(
-                "=======================================================");
-        writer.println("The total number of orders is: " +
-                counter.incCounter());
-        writer.println("This order Received at " +
-                (new Timestamp(System.currentTimeMillis())));
-        writer.println();
-        writer.print("Purchased by: " + request.getParameter("cardname"));
-        writer.println();
-        writer.print("Total: " + c.getFormat());
-        writer.println();
         
-        int num = cart.getNumberOfItems();
-        
-        if (num > 0) {
-            Iterator i = cart.getItems()
-            .iterator();
-            
-            while (i.hasNext()) {
-                ShoppingCartItem item = (ShoppingCartItem) i.next();
-                BookDetails bookDetails = (BookDetails) item.getItem();
-                writer.print("ISBN: " + bookDetails.getBookId());
-                writer.print("   Title: " + bookDetails.getTitle());
-                writer.print("   Quantity: " + item.getQuantity());
-                writer.println();
-            }
-        }
-        
-        writer.println(
-                "=======================================================");
+        writer.println("=======================================================");
         
         // Log the resulting string
         writer.flush();

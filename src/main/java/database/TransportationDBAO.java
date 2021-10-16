@@ -28,12 +28,16 @@
 
 package database;
 
-import java.sql.*;
-import javax.sql.*;
-import javax.naming.*;
-import java.util.*;
-import exception.*;
-import cart.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import enums.TransportationType;
 
 public class TransportationDBAO {
@@ -121,7 +125,7 @@ public class TransportationDBAO {
             
             prepStmt.close();
         } catch (SQLException ex) {
-            throw new BooksNotFoundException(ex.getMessage());
+            throw new RuntimeException(ex.getMessage());
         }
         
         releaseConnection();

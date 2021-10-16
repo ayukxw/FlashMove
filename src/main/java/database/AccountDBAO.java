@@ -28,18 +28,16 @@
 
 package database;
 
-import java.sql.*;
-import javax.sql.*;
-import javax.naming.*;
-import java.util.*;
-import exception.*;
-import cart.*;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Random;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Base64;
+import java.util.Random;
 
 // The instance of BookDBAO gets created when the application
 // is deployed. It maintains the Connection object to the

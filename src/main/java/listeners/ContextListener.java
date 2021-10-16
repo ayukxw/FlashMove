@@ -28,9 +28,9 @@
 
 package listeners;
 
-import database.BookDBAO;
-import javax.servlet.*;
-import util.Counter;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 // Event handler class for handling application scope events
 public final class ContextListener implements ServletContextListener {
@@ -39,37 +39,12 @@ public final class ContextListener implements ServletContextListener {
     // This method gets called when the application is deployed
     public void contextInitialized(ServletContextEvent event) {
         context = event.getServletContext();
-
-        // Create BookDBAO object and save it as an attribute to
-        // ServletContext scope object.
-        try {
-            BookDBAO bookDB = new BookDBAO();
-            context.setAttribute("bookDB", bookDB);
-        } catch (Exception ex) {
-            System.out.println("Couldn't create bookstore database bean: " +
-                ex.getMessage());
-        }
-
-        // Save hitCounter and orderCounter attributes in the
-        // ServletContext scope object
-        Counter counter = new Counter();
-        context.setAttribute("hitCounter", counter);
-        counter = new Counter();
-        context.setAttribute("orderCounter", counter);
+//        context.setAttribute("orderCounter", counter);
     }
 
     // This method gets called when the application is undeployed
     public void contextDestroyed(ServletContextEvent event) {
         context = event.getServletContext();
-
-        BookDBAO bookDB = (BookDBAO) context.getAttribute("bookDB");
-
-        if (bookDB != null) {
-            bookDB.remove();
-        }
-
-        context.removeAttribute("bookDB");
-        context.removeAttribute("hitCounter");
-        context.removeAttribute("orderCounter");
+//        context.removeAttribute("orderCounter");
     }
 }

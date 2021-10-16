@@ -31,7 +31,7 @@
 				<input type="password" name="password" size="20" class="input" placeholder="COMFIRM PASSWORD">
 			</div>
 			<div style="height:10%">
-				<input type="text" name="nickName" size="20" class="input" placeholder="MICK NAME">
+				<input type="text" name="nickName" size="20" class="input" placeholder="NICK NAME">
 			</div>
 			<div style="height:10%">
 				<input type="text" name="email" size="20" class="input" placeholder="USER EMAIL">

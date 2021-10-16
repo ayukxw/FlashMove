@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
 			return;
 		}
 		
-		if (!isNumeric(phone)) {
+		if (!isNumeric(phone) || phone.length() != 8) {
 			response.getWriter().write("<script language=javascript>alert('Fail to validate phone');window.location='register.jsp'</script>");
 			return;
 		}
