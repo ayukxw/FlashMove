@@ -43,15 +43,14 @@ import enums.TransportationType;
 public class TransportationDBAO {
 	private static final Map<Integer, String> typeMap = new HashMap();
     private ArrayList cars;
-    private ArrayList drivers;
     Connection con;
     private boolean conFree = true;
     
     // Database configuration
-    public static String url = "jdbc:mysql://localhost:3306/FlashMove";
+    public static String url = "jdbc:mysql://localhost:3306/flash_move";
     public static String dbdriver = "com.mysql.jdbc.Driver";
     public static String username = "root";
-    public static String password = "12345678zZ";
+    public static String password = "!qw@1QW2";
     
     public TransportationDBAO() throws Exception {
         try {
@@ -132,34 +131,6 @@ public class TransportationDBAO {
         releaseConnection();
         
         return cars;
-    }
-    
-    public List getDrivers() throws Exception {
-    	drivers = new ArrayList();
-        
-        try {
-            String selectStatement = "select * " + "from tb_driver";
-            getConnection();
-            
-            PreparedStatement prepStmt = con.prepareStatement(selectStatement);
-            ResultSet rs = prepStmt.executeQuery();
-            
-            while (rs.next()) {
-            	DriverDetails driverDetails =
-                        new DriverDetails(rs.getInt(1), rs.getString(2),
-                        rs.getString(3), rs.getFloat(4));
-//            	driverDetail.setTypeName(TransportationType.getByKey(driverDetail.getDriverName()));
-            	drivers.add(driverDetails);
-            }
-            
-            prepStmt.close();
-        } catch (SQLException ex) {
-            throw new BooksNotFoundException(ex.getMessage());
-        }
-        
-        releaseConnection();
-        
-        return drivers;
     }
     
 }
