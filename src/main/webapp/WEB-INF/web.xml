@@ -29,6 +29,12 @@
     <servlet-name>TransportationServlet</servlet-name>
     <servlet-class>servlets.TransportationServlet</servlet-class>
   </servlet>
+  <servlet>
+    <display-name>DriverServlet</display-name>
+    <servlet-name>DriverServlet</servlet-name>
+    <servlet-class>servlets.DriverServlet</servlet-class>
+  </servlet>
+  
 
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
@@ -37,6 +43,10 @@
   <servlet-mapping>
   	<servlet-name>TransportationServlet</servlet-name>
   	<url-pattern>/transportation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DriverServlet</servlet-name>
+  	<url-pattern>/driver</url-pattern>
   </servlet-mapping>
  
  

@@ -41,10 +41,11 @@ public class LoginServlet extends HttpServlet {
 		}		
 		
 		if (result){
-			System.out.print("result true!");
+			System.out.print("result true!Login!");
 			response.getWriter().write("<script language=javascript>alert('login success')</script>");
 //			request.getRequestDispatcher("/transportation").forward(request,response);
 			response.sendRedirect("/FlashMove/transportation");
+//			response.sendRedirect("/FlashMove/driver");
 			return;
 		} else {
 			response.getWriter().write("<script language=javascript>alert('login fail')</script>");

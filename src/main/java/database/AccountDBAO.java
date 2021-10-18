@@ -51,10 +51,10 @@ public class AccountDBAO {
     private boolean conFree = true;
     
     // Database configuration
-    public static String url = "jdbc:mysql://localhost:3306/flash_move";
+    public static String url = "jdbc:mysql://localhost:3306/FlashMove";
     public static String dbdriver = "com.mysql.jdbc.Driver";
     public static String username = "root";
-    public static String password = "!qw@1QW2";
+    public static String password = "12345678zZ";
     
     public AccountDBAO() throws Exception {
         try {
