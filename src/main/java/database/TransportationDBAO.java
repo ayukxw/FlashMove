@@ -154,7 +154,7 @@ public class TransportationDBAO {
             
             prepStmt.close();
         } catch (SQLException ex) {
-            throw new BooksNotFoundException(ex.getMessage());
+            throw new RuntimeException(ex.getMessage());
         }
         
         releaseConnection();
